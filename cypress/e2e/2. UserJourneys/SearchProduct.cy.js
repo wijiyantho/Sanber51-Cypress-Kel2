@@ -5,6 +5,4 @@ describe('Search Product without Sign in', () => {
     })
 
     
-
-    
 })

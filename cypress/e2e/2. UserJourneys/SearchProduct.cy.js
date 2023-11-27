@@ -6,16 +6,16 @@ describe('Search Product', () => {
 
     it('Search & Choose Hoodies without Sign in', () => {
         cy.get('#ui-id-5').click()
-        cy.url().should('contains','/men.html')
+        cy.url().should('contain','/men.html')
 
         // Select Category Hoodies
         cy.get('.categories-menu > :nth-child(2) > :nth-child(1) > a').click()
-        cy.url().should('contains','hoodies-')
+        cy.url().should('contain','hoodies-')
         cy.get(':nth-child(2) > .filter-options-title').click()  
         cy.get(':nth-child(2) > .filter-options-content > .items > :nth-child(1) > a').click()
-        cy.url().should('contains','hoodies-')
+        cy.url().should('contain','hoodies-')
         cy.get(':nth-child(1) > .product-item-info > .photo > .product-image-container > .product-image-wrapper > .product-image-photo').click()
-        cy.url().should('contains','trek-hoodie')
+        cy.url().should('contain','trek-hoodie')
         cy.get('#option-label-size-143-item-169').click()
         cy.get('#option-label-color-93-item-51').click()
         cy.get('#qty').clear().type('2{enter}')

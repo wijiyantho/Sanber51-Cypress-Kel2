@@ -35,10 +35,11 @@ describe('Home Page', () => {
       cy.get('#email_address-error').should('be.visible').contains('Ex: johndoe@domain.com')
     })
 
-    // Insert correct email
-    cy.get('#email_address').clear()
-    cy.get('#email_address').should('exist').type('saya@example.com{enter}')
-    cy.get('#password').should('exist')
+    it('Insert correct email', () => {
+      cy.get('#email_address').clear()
+      cy.get('#email_address').should('exist').type('saya@example.com{enter}')
+      cy.get('#password').should('exist')
+    })
 
     it('Insert empty password', () => {
       cy.get('#password').type('{enter}')
@@ -50,19 +51,21 @@ describe('Home Page', () => {
       cy.get('#password-strength-meter').should('be.visible').contains('Weak')
     })
 
-    // Insert correct password
-    cy.get('#password').clear()
-    cy.get('#password').type('Saya@1234{enter}')
-    cy.get('#password-strength-meter').should('exist')
-    
+    it('Insert correct password', () => {
+      cy.get('#password').clear()
+      cy.get('#password').type('Saya@1234{enter}')
+      cy.get('#password-strength-meter').should('exist')
+    })
+
     it('Confirm different password', () => {
       cy.get('#password-confirmation').type('Saya@123456{enter}')
       cy.get('#password-confirmation-error').should('be.visible')
     })
 
-    // Confirm same password
-    cy.get('#password-confirmation').clear().type('Saya@1234{enter}')
-    cy.location().should((loc) => {expect(loc.href).to.include('/customer/account/')})
+    it('Confirm same password', () => {
+      cy.get('#password-confirmation').clear().type('Saya@1234{enter}')
+      cy.location().should((loc) => {expect(loc.href).to.include('/customer/account/')})
+    })
 
   })
 

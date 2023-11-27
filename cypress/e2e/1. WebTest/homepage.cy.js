@@ -55,15 +55,22 @@ describe('Home Page', () => {
 
     // Confirm same password
     cy.get('#password-confirmation').clear().type('Saya@1234{enter}')
-    cy.location('pathname').should('equal','/customer/account/')
+    cy.location().should((loc) => {expect(loc.href).to.include('/customer/account/')})
 
   })
 
-  it('Sign In Test', ()=> {})
+  it('Sign In Test', ()=> {
+    cy.get('.authorization-link').contains('Sign In').click()
+    cy.location().should((loc) => {expect(loc.href).to.include('customer/account/login')})
 
+    // input wrong e-mail and password
+    cy.get('#email').type('saya@example.com')
+    cy.get('#pass').type('saya@123456{enter}')
+    cy.get('.message-error').should('be.visible')
 
-  
-
-  
+    // input correct e-mail and password
+    cy.get('#email').clear().type('saya@contoh.com')
+    cy.get('#pass').type('saya@1234{enter}')
+  })
 
 })

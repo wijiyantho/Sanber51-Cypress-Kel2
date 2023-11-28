@@ -1,3 +1,4 @@
+
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
     // failing the test
@@ -18,6 +19,11 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 //
+Cypress.Commands.add('fullname', (firstN, lastN) => {
+    cy.get('#firstname').type(firstN)
+    cy.get('#lastname').should('exist').type(lastN)
+})
+
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })

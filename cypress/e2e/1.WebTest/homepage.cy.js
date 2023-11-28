@@ -1,3 +1,5 @@
+
+import loginPage from '../../support/pageObject/loginPage'
 const userData = require('../../fixtures/userdata.json')
 
 describe('Home Page', () => {
@@ -63,10 +65,14 @@ describe('Home Page', () => {
     cy.get(':nth-child(3)').contains('Create an Account').click()
     cy.location('pathname').should('equal','/customer/account/create/')
     cy.fullname(Cypress.env('firstName'), Cypress.env('lastName'))
-    cy.get('#email_address').clear()
-    cy.get('#email_address').should('exist').type(Cypress.env('crctEmail'))
-    cy.get('#password').should('exist')
-    cy.get('#password').type('{enter}')
+    cy.get(loginPage.emladr).clear()
+    //cy.get('#email_address').clear()
+    cy.get(loginPage.emladr).should('exist').type(Cypress.env('crctEmail'))
+    //cy.get('#email_address').should('exist').type(Cypress.env('crctEmail'))
+    cy.get(loginPage.pswd).should('exist')
+    //cy.get('#password').should('exist')
+    cy.get(loginPage.pswd).type('{enter}')
+    //cy.get('#password').type('{enter}')
     cy.get('#password-strength-meter').should('be.visible').contains('No Password')
   })
 

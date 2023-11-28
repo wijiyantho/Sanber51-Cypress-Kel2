@@ -1,7 +1,12 @@
 describe('Search Product', () => {
 
     beforeEach(() => {
-        cy.visit('https://magento.softwaretestingboard.com/')
+        cy.visit('')
+    })
+
+    it('Check product in basket', () => {
+        cy.get('.showcart').click()
+        cy.get('.cart-empty > :nth-child(1)').should('contain','no items')
     })
 
     it('Search & Choose Hoodies without Sign in', () => {
@@ -20,14 +25,13 @@ describe('Search Product', () => {
         cy.get('#option-label-color-93-item-51').click()
         cy.get('#qty').clear().type('2{enter}')
         cy.get('#product-addtocart-button').click()
-
-        // Check if product already in basket
-        //cy.get('a[href*="/checkout/cart/"]').click()
+    })
+        
 
         // View and continue to checkout
         //cy.get('#top-cart-btn-checkout').click()
 
-    })
+
 
     
 })
